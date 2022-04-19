@@ -8,23 +8,37 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
+import HomeTab from '../screens/HomeTab';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { heightInt, widthInt } from '../helpers/size';
+import Icon from '../components/reusable/icon';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({ colorScheme, switchTheme }: { colorScheme: ColorSchemeName, switchTheme:any }) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={styles.switchContainer}>
+          <TouchableOpacity onPress={() => switchTheme()}>
+            {colorScheme === "dark" ? 
+              <Icon color='#aeaeae' name='moon' library='Ionicons' size={heightInt(150)}/> :
+              <Icon color='#102027' name='sunny' library='Ionicons' size={heightInt(150)}/> 
+            }
+          </TouchableOpacity>
+        </View>
+        <RootNavigator />
+      </SafeAreaView>
     </NavigationContainer>
   );
 }
@@ -63,10 +77,10 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
+        name="Home"
+        component={HomeTab}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
+          title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable
@@ -105,3 +119,13 @@ function TabBarIcon(props: {
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+const styles = StyleSheet.create({
+  switchContainer: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    marginTop: (StatusBar.currentHeight || heightInt(150)) + heightInt(90),
+    zIndex: 2,
+    right: widthInt(150),
+  },
+});
