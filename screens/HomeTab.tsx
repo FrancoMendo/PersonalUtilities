@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { StyleSheet, TouchableOpacity, useColorScheme } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { heightInt, widthInt } from '../helpers/size';

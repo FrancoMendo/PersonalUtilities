@@ -21,8 +21,16 @@ import LinkingConfiguration from './LinkingConfiguration';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { heightInt, widthInt } from '../helpers/size';
 import Icon from '../components/reusable/icon';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTheme, toggleTheme } from '../features/theme/themeSlice';
 
-export default function Navigation({ colorScheme, switchTheme }: { colorScheme: ColorSchemeName, switchTheme:any }) {
+export default function Navigation() {
+  const colorScheme = useSelector(selectTheme);
+  const switchTheme = () => {
+    dispatch(toggleTheme());
+  }
+  const dispatch = useDispatch();
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
