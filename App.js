@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './store';
+
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -14,8 +16,10 @@ export default function App() {
     return (
       <SafeAreaProvider>
         <Provider store={store}>
-          <Navigation />
-          <StatusBar />
+          <PersistGate persistor={persistor} loading={null}>
+            <StatusBar />
+            <Navigation />
+          </PersistGate>
         </Provider>
       </SafeAreaProvider>
     );
