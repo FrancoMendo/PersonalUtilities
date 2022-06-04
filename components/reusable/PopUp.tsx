@@ -24,7 +24,7 @@ const PopUp = ({
   return (
     <>
       {/* <View style={{backgroundColor: 'rgba(52, 52, 52, 0.8)', flex: 1 }}> */}
-      <Modal visible={show} style={{ flex: 1 }} transparent={true}>
+      <Modal visible={show} style={{ flex: 1 }} transparent={true} animationType={"fade"}>
         <View style={[styles.modalStyle, modalStyle]}>
           <View style={[styles.card, cardStyle]}>
             <Text style={[styles.textTitle, titleStyle]}>{title}</Text>
