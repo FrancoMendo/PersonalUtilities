@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectActivities } from '../features/calendar/calendarSlice';
 import { selectTheme } from '../features/theme/themeSlice';
 import Colors from '../constants/Colors';
+import PopUp from '../components/reusable/PopUp';
 
 export default function HomeTab({ navigation }: RootTabScreenProps<'TabOne'>) {
   const days = ["Lunes","Martes","Miercoles","Jueves","Viernes"];
@@ -54,6 +55,7 @@ export default function HomeTab({ navigation }: RootTabScreenProps<'TabOne'>) {
           </View>
         ))}
       </View>
+      <PopUp show={true} />
     </>
   );
 }
