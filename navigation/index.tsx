@@ -11,7 +11,6 @@ import * as React from 'react';
 import { ColorSchemeName, Pressable, View, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
 
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import HomeTab from '../screens/HomeTab';
@@ -90,20 +89,6 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
         })}
       />
       <BottomTab.Screen
@@ -134,6 +119,6 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginTop: (StatusBar.currentHeight || heightInt(150)) + heightInt(90),
     zIndex: 2,
-    right: widthInt(150),
+    right: widthInt(60),
   },
 });

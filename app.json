@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "PersonalUtilities",
-    "slug": "PersonalUtilities",
+    "name": "Stelar",
+    "slug": "Stelar",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/blackHoleIcon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -13,7 +13,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 4000
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,13 +23,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/blackHoleIcon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.francomendo.PersonalUtilities"
+      "package": "com.francomendo.Stelar"
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/blackHoleIcon.png"
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { ReactComponentElement } from 'react';
+import React from 'react';
 import { Modal, StyleProp, StyleSheet, View, ViewStyle, Text, TouchableOpacity } from 'react-native';
 import { heightInt } from '../../helpers/size';
 import Button from './Button';
@@ -11,32 +11,48 @@ interface PopUpProps {
   titleStyle?: ViewStyle;
   subtitle?: string;
   subtitleStyle?: ViewStyle;
+  children?: React.ReactNode;
+  buttonsEnabled?: boolean;
+  onAccept?: () => void;
+  onCancell?: () => void;
 }
 const PopUp = ({
   show = true,
+  buttonsEnabled = true,
   modalStyle,
   cardStyle,
   title = "Title",
   titleStyle,
   subtitle = "subtitle",
   subtitleStyle,
+  children,
+  onAccept,
+  onCancell,
 }: PopUpProps) => {
   return (
     <>
-      {/* <View style={{backgroundColor: 'rgba(52, 52, 52, 0.8)', flex: 1 }}> */}
-      <Modal visible={show} style={{ flex: 1 }} transparent={true} animationType={"fade"}>
+      <Modal
+        visible={show}
+        style={{ flex: 1 }}
+        transparent={true}
+        animationType={"fade"}
+      >
         <View style={[styles.modalStyle, modalStyle]}>
           <View style={[styles.card, cardStyle]}>
             <Text style={[styles.textTitle, titleStyle]}>{title}</Text>
             <Text style={[styles.textSubtitle, subtitleStyle]}>{subtitle}</Text>
+            <>{children}</>
             <View style={[styles.buttonsContainer]}>
-              <Button text={"button 1"}/>
-              <Button text={"button 2"}/>
+              {buttonsEnabled && (
+                <>
+                  <Button text={"Accept"} onPress={onAccept} />
+                  <Button text={"Cancell"} onPress={onCancell} typeStyle="red"/>
+                </>
+              )}
             </View>
           </View>
         </View>
       </Modal>
-      {/* </View> */}
     </>
   );
 };
@@ -64,7 +80,8 @@ const styles = StyleSheet.create({
   },
   textTitle: {
     textAlign: 'center',
-    fontSize: heightInt(50)
+    fontSize: heightInt(50),
+    fontWeight: '600',
   },
   textSubtitle: {
     textAlign: 'center',
