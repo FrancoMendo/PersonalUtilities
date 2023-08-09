@@ -9,12 +9,12 @@ import Icon from "../components/reusable/icon";
 import { useSelector } from "react-redux";
 import { selectActivities } from "../features/calendar/calendarSlice";
 import { selectTheme } from "../features/theme/themeSlice";
-import Colors from "../constants/Colors";
 import PopUp from "../components/reusable/PopUp";
 import { Picker } from "@react-native-picker/picker";
 import { Color } from "../helpers/colors";
+import { ColorTheme } from "../constants/Colors";
 
-export default function HomeTab({ navigation }: RootTabScreenProps<"TabOne">) {
+export default function HomeTab({ navigation }: RootTabScreenProps<"Home">) {
   const [showPopUp, setShowPopUp] = useState(null);
   const [daySelected, setDaySelected] = useState("Lunes");
   const dayNumber = dayjs().get("d");
@@ -118,7 +118,7 @@ export default function HomeTab({ navigation }: RootTabScreenProps<"TabOne">) {
                 key={h + index}
                 style={[
                   styles(theme).hourContainer,
-                  { backgroundColor: "#8CF587" },
+                  { backgroundColor: Color.secondary },
                 ]}
               >
                 <Text style={{ textAlign: "center" }}>{h}hs</Text>
@@ -132,8 +132,8 @@ export default function HomeTab({ navigation }: RootTabScreenProps<"TabOne">) {
         title={showPopUp?.title || ""}
         onCancell={() => setShowPopUp(null)}
       >
-        <View style={{ paddingHorizontal: widthInt(40) }}>
-          <Text style={styles().textBold}>Actividad</Text>
+        <View style={{ paddingHorizontal: widthInt(40), backgroundColor: ColorTheme[theme].background }}>
+          <Text style={styles(theme).textBold}>Actividad</Text>
           <TextInput
             style={{
               borderColor: "#cfd8dc",
@@ -144,7 +144,7 @@ export default function HomeTab({ navigation }: RootTabScreenProps<"TabOne">) {
             placeholder="Nombre de actividad"
           />
           <Text style={styles().textBold}>Día 📅</Text>
-          <View style={styles().pickerContainer}>
+          <View style={styles(theme).pickerContainer}>
             <Picker
               onValueChange={(itemValue) => setDaySelected(itemValue)}
               mode="dropdown"
@@ -156,7 +156,7 @@ export default function HomeTab({ navigation }: RootTabScreenProps<"TabOne">) {
               ))}
             </Picker>
           </View>
-          <Text style={styles().textBold}>Horario (24hs)</Text>
+          <Text style={styles(theme).textBold}>Horario (24hs)</Text>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <TextInput
               style={{
@@ -202,7 +202,7 @@ const styles = (theme: "dark" | "light" = "light") =>
       display: "flex",
       flexDirection: "row",
       marginTop: heightInt(50),
-      backgroundColor: Colors[theme].background,
+      backgroundColor: ColorTheme[theme].background,
       flex: 1,
     },
     title: {
@@ -211,7 +211,7 @@ const styles = (theme: "dark" | "light" = "light") =>
       textAlign: "center",
       borderBottomColor: "#000",
       borderBottomWidth: 1,
-      color: Colors[theme].text,
+      color: ColorTheme[theme].text,
     },
     separator: {
       marginVertical: 30,
@@ -238,26 +238,26 @@ const styles = (theme: "dark" | "light" = "light") =>
     },
     activitiesSection: {
       width: "100%",
-      backgroundColor: Colors[theme].backgroundRegular,
+      backgroundColor: ColorTheme[theme].backgroundRegular,
     },
     actFlagsSection: {
       width: "100%",
       display: "flex",
       flexDirection: "row",
       paddingVertical: heightInt(20),
-      backgroundColor: Colors[theme].backgroundRegular,
+      backgroundColor: ColorTheme[theme].backgroundRegular,
     },
     column: {
       width: "20%",
       borderColor: "#000",
       borderWidth: 1,
       paddingBottom: heightInt(10),
-      backgroundColor: Colors[theme].backgroundRegular,
+      backgroundColor: ColorTheme[theme].backgroundRegular,
     },
     text: {
       textAlign: "center",
       paddingVertical: heightInt(10),
-      color: Colors[theme].text,
+      color: ColorTheme[theme].text,
     },
     iconsContainer: {
       position: "absolute",
@@ -271,7 +271,7 @@ const styles = (theme: "dark" | "light" = "light") =>
       fontSize: heightInt(35),
       fontWeight: "bold",
       paddingVertical: heightInt(15),
-      color: Colors[theme].text,
+      color: ColorTheme[theme].text,
     },
     pickerContainer: {
       borderColor: "#dedede",

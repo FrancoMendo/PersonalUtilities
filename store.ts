@@ -41,3 +41,5 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
+const storeState = store.getState();
+export type StoreState = typeof storeState;

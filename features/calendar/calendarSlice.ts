@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { StoreState } from '../../store';
 
 export interface activitiesInterface {
   id: number;
@@ -26,17 +27,15 @@ export const calendarSlice = createSlice({
       state.activities = act.push(payload);
     },
     deleteActivity: (state, { payload }) => {
-      state.value -= 1;
     },
     updateActivity: (state, action) => {
-      state.value += action.payload;
     },
   },
 });
 
-export const { addActivity, deleteActivity, updateActivity } = calendarSlice.actions
+export const { deleteActivity, updateActivity } = calendarSlice.actions
 
 
-export const selectActivities = (state) => state.calendar.activities
+export const selectActivities = (state: StoreState) => state.calendar.activities
 
 export default calendarSlice.reducer

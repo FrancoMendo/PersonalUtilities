@@ -7,7 +7,6 @@ import Navigation from './navigation';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './store';
 
-
 export default function App() {
   const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {

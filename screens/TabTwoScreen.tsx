@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector,  } from 'react-redux';
 import CheckBoxItem from '../components/reusable/CheckBoxItem';
-import Icon from '../components/reusable/icon';
 
 import { Text, View } from '../components/Themed';
-import Colors from '../constants/Colors';
 import { checkMustResetList } from '../features/finanzas/finanzasFns';
 import { changeCostStatus, costFormat, selectMonthCosts } from '../features/finanzas/finanzasSlice';
 import { selectTheme } from '../features/theme/themeSlice';
-import { heightInt, widthInt } from '../helpers/size';
+import { widthInt } from '../helpers/size';
+import { ColorTheme } from '../constants/Colors';
 
 export default function TabTwoScreen() {
   const theme: 'dark' | 'light' = useSelector(selectTheme);
@@ -57,7 +56,7 @@ export default function TabTwoScreen() {
               ))}
           </View>
         </View>
-        <View style={{ flex: 0.5, alignItems: "center", backgroundColor: Colors[theme].background }}>
+        <View style={{ flex: 0.5, alignItems: "center", backgroundColor: ColorTheme[theme].background }}>
           <View
             style={styles(theme).separator}
             lightColor="#eee"
@@ -99,13 +98,13 @@ const styles = (theme: "dark" | "light") =>
     title: {
       fontSize: 20,
       fontWeight: "bold",
-      color: Colors[theme].text,
+      color: ColorTheme[theme].text,
     },
     subtitle: {
       fontSize: 20,
       fontWeight: "500",
-      color: Colors[theme].text,
-      backgroundColor: Colors[theme].background,
+      color: ColorTheme[theme].text,
+      backgroundColor: ColorTheme[theme].background,
     },
     separator: {
       marginVertical: 5,
@@ -115,7 +114,7 @@ const styles = (theme: "dark" | "light") =>
     box: {
       flex: 0.5,
       alignItems: "center",
-      backgroundColor: Colors[theme].background,
+      backgroundColor: ColorTheme[theme].background,
       paddingHorizontal: widthInt(25)
     },
   });
