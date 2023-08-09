@@ -19,7 +19,11 @@ const costs = [
 export const finanzasSlice = createSlice({
   name: 'finanzas',
   initialState: {
-    monthConsts: [],
+    monthConsts: [
+      { status: true, description: "Alquiler", valor: "15k", id: 1 },
+      { status: true, description: "Natación", valor: "3k", id:2 },
+      { status: true, description: "Inglés", valor: "2.5k", id:3 },
+    ],
   },
   reducers: {
     clearMonthCosts: (state) => {

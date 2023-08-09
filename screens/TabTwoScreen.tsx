@@ -28,7 +28,7 @@ export default function TabTwoScreen() {
     <View style={styles(theme).container}>
       <View>
         <Text style={styles(theme).title}>Finanzas</Text>
-        <Icon library="Ionicons" name="add-circle" size={heightInt(50)} color='#81c784'/>
+        {/* <Icon library="Ionicons" name="add-circle" size={heightInt(50)} color='#81c784'/> */}
       </View>
       <View style={{ width: "100%", display: "flex", height: "100%" }}>
         <View style={styles(theme).box}>
